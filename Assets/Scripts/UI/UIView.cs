@@ -5,6 +5,7 @@ using MessagePipe;
 using R3;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 public class UIView : MonoBehaviour
 {
@@ -14,11 +15,18 @@ public class UIView : MonoBehaviour
     [SerializeField] 
     private Text text;
     
-    private readonly IPublisher<Unit> publisher;
+    [Inject]
+    private readonly IPublisher<Unit> _publisher;
 
     private void Start()
     {
         var onPush = button.onClick.AsObservable();
 
+        onPush.Subscribe(_publisher.Publish);
+    }
+
+    public void ChangeText(int num)
+    {
+        text.text = num.ToString();
     }
 }
