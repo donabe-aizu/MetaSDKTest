@@ -433,6 +433,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "jp.hadashikick.unio": {
+      "version": "https://github.com/hadashiA/Unio.git?path=/Assets/Unio#0.2.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "da96c4a9d17a89c62b5adb5bd6bf6a8c7023fa77"
+    },
     "jp.hadashikick.vcontainer": {
       "version": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer",
       "depth": 0,
