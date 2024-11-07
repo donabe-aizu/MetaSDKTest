@@ -1,12 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unio;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Networking;
 using UnityEngine.Profiling;
+using Image = UnityEngine.UI.Image;
 
 public class LoadImage : MonoBehaviour
 {
+    [SerializeField]
+    private Image _image;
     CustomSampler _sampler;
 
     private string filepath = Application.dataPath + "/Image/donabe.png";
@@ -15,26 +19,41 @@ public class LoadImage : MonoBehaviour
     {
         // 事前にCustomSamplerを生成しておく必要あり
         _sampler = CustomSampler.Create("Unio");
-        
-        _sampler.Begin();
+
         for (int i = 0; i < 50; i++)
         {
-            LoadImageByUnio();
+            StartCoroutine(GetTexture());
         }
-        _sampler.End();
     }
     
     private void LoadImageByFileStream()
     {
-        var fileData = System.IO.File.ReadAllBytes(filepath);
+        var fileData = NativeFile.ReadAllBytes(filepath);
         Texture2D texture = new Texture2D(1, 1);
-        texture.LoadImage(fileData);
+        texture.name = "SystemIO";
+        texture.LoadRawTextureData(fileData);
     }
     
     private void LoadImageByUnio()
     {
         var fileData = NativeFile.ReadAllBytes(filepath);
-        Texture2D texture = new Texture2D(1, 1);
+        Texture2D texture = new Texture2D(1, 1,TextureFormat.RGBA32,1,false);
+        texture.name = "Unio";
         texture.LoadRawTextureData(fileData);
+    }
+    
+    IEnumerator GetTexture() {
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture("https://placehold.jp/150x150.png",false);
+        yield return www.SendWebRequest();
+
+        if(www.isNetworkError || www.isHttpError) {
+            Debug.Log(www.error);
+        }
+        else {
+            Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            myTexture.name = "LoadImage";
+            Sprite sprite = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
+            _image.sprite = sprite;
+        }
     }
 }
