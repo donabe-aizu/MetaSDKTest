@@ -142,6 +142,8 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: 11400000, guid: 97d0290f5cd9c934c848ba57d2b3d0bd, type: 2}
+  - {fileID: 11400000, guid: 8a935c0c87cbd284eb976fff839588b2, type: 2}
+  - {fileID: 797595121287180626, guid: 6b6c2e47093dfc1498616f38d9352774, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -162,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.UnityTechnologies.com.unity.template.urpblank
+    Android: com.donabe.MetaSDKTest
     Standalone: com.donabe.MetaSDKTest
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
