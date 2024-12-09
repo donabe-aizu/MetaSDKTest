@@ -5,6 +5,7 @@
     "com.cysharp.r3": "https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+    "com.meta.xr.mrutilitykit": "71.0.0",
     "com.meta.xr.sdk.avatars": "31.0.0",
     "com.meta.xr.sdk.core": "69.0.0",
     "com.meta.xr.sdk.interaction": "69.0.0",
